@@ -1,0 +1,15 @@
+# Node modules - don't track dependencies
+node_modules/
+
+# Environment variables - keep secrets private
+.env
+
+# Logs
+*.log
+
+# macOS system file (ignore if on Mac)
+.DS_Store
+
+# Optional: ignore temp or upload folders if any
+/uploads
+/temp
