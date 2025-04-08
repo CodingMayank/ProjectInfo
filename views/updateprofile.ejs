@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-gray-200 font-sans">
+  <nav class="flex h-20 items-center justify-between px-4 py-0 bg-gray-200 bg-opacity-90 shadow-md">
+    <div class="flex items-center space-x-4">
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="w-48 h-28 md:w-30 md:h-18 rounded-full" /></a>
+    </div>
+    <div class="hidden md:flex space-x-6 items-center">
+      <a href="/user/update/profilepicture/<%= user._id %>/<%= user.fullname %>" class="text-gray-600 hover:text-blue-500 font-medium">Profile picture</a>
+      <a href="/about/<%= user._id %>/<%= user.fullname %>" class="text-gray-600 hover:text-blue-500 font-medium">About</a>
+      <a href="/services/<%= user._id %>/<%= user.fullname %>" class="text-gray-600 hover:text-blue-500 font-medium">Services</a>
+      <a href="/contact" class="text-gray-600 hover:text-blue-500 font-medium">Contact</a>
+      <a href="/logout" class="text-gray-600 hover:text-blue-500 font-medium">logout</a>
+    </div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-gray-600 focus:outline-none text-2xl">
+        ☰
+      </button>
+      <div id="dropdown" class="hidden absolute right-6 mt-2 w-40 bg-white border rounded-md shadow-md z-50">
+        <a href="/user/update/profilepicture/<%= user._id %>/<%= user.fullname %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-image-portrait"></i> Profile picture</a>
+        <a href="/services/<%= user._id %>/<%= user.fullname %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-sliders"></i> Services</a>
+        <a href="/about/<%= user._id %>/<%= user.fullname %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-card"></i> About</a>
+        <a href="/contact" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-book"></i> Contact</a>
+        <a href="/logout" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+      </div>
+    </div>
+  </nav>
+  <div class="flex-grow flex items-center justify-center px-4 py-12">
+    <form action="/user/update/profile" method="POST" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-2xl">
+      <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Update Profile</h2>
+
+      <label for="skills" class="block text-gray-700 font-medium mb-2">Skill 1</label>
+      <input type="text" id="skills" name="skill01" placeholder="Your skills (e.g., JavaScript, Node.js)" class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      <textarea id="bio" name="desc01" rows="3" placeholder="Tell us about the recent project on the above skill..." class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+
+      <label for="skills" class="block text-gray-700 font-medium mb-2">Skill 2</label>
+      <input type="text" id="skills" name="skill02" placeholder="Your skills (e.g., JavaScript, Node.js)" class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      <textarea id="bio" name="desc02" rows="3" placeholder="Tell us about the recent project on the above skill..." class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+
+      <label for="skills" class="block text-gray-700 font-medium mb-2">Skill 3</label>
+      <input type="text" id="skills" name="skill03" placeholder="Your skills (e.g., JavaScript, Node.js)" class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      <textarea id="bio" name="desc03" rows="3" placeholder="Tell us about the recent project on the above skill..." class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+
+      <label for="bio" class="block text-gray-700 font-medium mb-2">Bio</label>
+      <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..." class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"></textarea>
+
+      <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition duration-200">
+        Save Changes
+      </button>
+    </form>
+  </div>
+  <!-- Footer -->
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      const dropdown = document.getElementById("dropdown");
+      dropdown.classList.toggle("hidden");
+    });
+    </script>
+<footer class="bg-white py-6 text-center mt-2 text-gray-500 text-sm border-t">
+  © <%= new Date().getFullYear() %> Info. All rights reserved. |
+  <a href="#privacy" class="hover:text-blue-500">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

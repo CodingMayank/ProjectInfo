@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+  />
+</head>
+<body class="bg-gray-200 font-sans">
+  <nav class="flex h-20 items-center justify-between px-4 py-0 bg-gray-200 bg-opacity-90 shadow-md">
+    <div class="flex items-center space-x-4">
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="w-48 h-28 md:w-30 md:h-18 rounded-full" /></a>
+    </div>
+    <div class="hidden md:flex space-x-6 items-center">
+      <a href="/user/update/profile/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="text-gray-600 hover:text-blue-500 font-medium">Profile</a>
+      <a href="/about/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="text-gray-600 hover:text-blue-500 font-medium">About</a>
+      <a href="/services/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="text-gray-600 hover:text-blue-500 font-medium">Services</a>
+      <a href="/contact" class="text-gray-600 hover:text-blue-500 font-medium">Contact</a>
+      <a href="/logout" class="text-gray-600 hover:text-blue-500 font-medium">logout</a>
+    </div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-gray-600 focus:outline-none text-2xl">
+        ☰
+      </button>
+      <div id="dropdown" class="hidden absolute right-6 mt-2 w-40 bg-white border rounded-md shadow-md z-50">
+        <a href="/user/update/profile/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="/services/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-sliders"></i> Services</a>
+        <a href="/about/<%= userinfo.user.id %>/<%= userinfo.user.name %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-card"></i> About</a>
+        <a href="/contact" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-book"></i> Contact</a>
+        <a href="/logout" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Swiper Slider -->
+  <div class="w-full">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <% if (userinfo.carouselImages && userinfo.carouselImages.length) { %>
+          <% userinfo.carouselImages.forEach((img, index) => { %>
+            <div class="swiper-slide">
+              <img src="<%= img %>" alt="Slide <%= index + 1 %>" class="w-full h-96 object-cover" />
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="swiper-slide">
+            <img src="https://via.placeholder.com/1200x400?text=Default+Slide" class="w-full h-96 object-cover" />
+          </div>
+        <% } %>
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 px-6 bg-sky-100">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Skills</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <% userinfo.services.forEach(service => { %>
+        <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <h3 class="text-2xl font-semibold mb-4 text-blue-600"><%= service.title %></h3>
+          <p class="text-gray-700 leading-relaxed"><%= service.description %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+  <!-- User Section -->
+  <!-- User Section -->
+<section id="profile" class="relative py-16 px-4 bg-sky-100">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">User Information</h2>
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow flex flex-col md:flex-row items-center md:items-start gap-6">
+    <!-- Left: User Image -->
+    <div class="flex-shrink-0">
+      <img src="/images/<%= userinfo.user.profilepic %>" alt="User Photo" class="w-40 h-40 rounded-full object-cover border-4 border-blue-300 shadow-md" />
+    </div>
+
+    <!-- Right: User Info -->
+    <div class="flex-grow">
+      <h3 class="text-2xl font-semibold mb-2 text-blue-600"><%= userinfo.user.name %></h3>
+      <p class="text-gray-700 text-base leading-relaxed"><%= userinfo.user.bio %></p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 text-center text-gray-500 text-sm border-t">
+    © <%= new Date().getFullYear() %> Info. All rights reserved. |
+    <a href="#privacy" class="hover:text-blue-500">Privacy Policy</a>
+  </footer>
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      const dropdown = document.getElementById("dropdown");
+      dropdown.classList.toggle("hidden");
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</body>
+</html>

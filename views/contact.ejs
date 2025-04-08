@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="flex h-20 items-center justify-between px-6 py-4 bg-gray-200 bg-opacity-90 shadow-md">
+    <div class="flex items-center space-x-4">
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="w-48 h-28 md:w-30 md:h-18 rounded-full" /></a>
+    </div>
+    <div class="space-x-4">
+      <a href="/" class="text-gray-700 hover:text-purple-600 font-semibold">
+        <i class="fas fa-home"></i> Home
+      </a>
+      
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-4xl font-bold text-center text-purple-700 mb-12 tracking-tight">Let's Connect</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+      <!-- Contact Info Card -->
+      <div class="bg-white bg-opacity-60 backdrop-blur-md shadow-lg p-8 rounded-2xl border border-purple-100">
+        <h3 class="text-2xl font-semibold text-purple-800 mb-6">Contact Information</h3>
+        <div class="space-y-4 text-lg">
+          <p><strong>Email:</strong> <a href="mailto:info.@gmail.com" class="text-blue-600 hover:underline">info.@gmail.com</a></p>
+          <p><strong>Phone:</strong> <span class="text-gray-700">+91 98765 43210</span></p>
+          <p><strong>Location:</strong> 123 Random Street, New Delhi, India</p>
+        </div>
+      </div>
+
+      <!-- Embedded Google Map -->
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-purple-100">
+        <iframe 
+          class="w-full h-96"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14014.577893113353!2d77.2090213!3d28.6139391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce35aebd3bc37%3A0x2d2683cf99e67784!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1616161616161"
+          style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white bg-opacity-90 py-6 text-center text-gray-600 text-sm border-t border-purple-100">
+    © <%= new Date().getFullYear() %> Info. All rights reserved.
+  </footer>
+
+</body>
+</html>

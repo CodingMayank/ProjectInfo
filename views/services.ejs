@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | Info.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeInUp: "fadeInUp 1s ease-out",
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 font-sans leading-relaxed">
+
+  <!-- Navbar -->
+  <nav class="flex h-20 items-center justify-between px-4 py-0 bg-gray-200 bg-opacity-90 shadow-md">
+    <div class="flex items-center space-x-4">
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="w-48 h-28 md:w-30 md:h-18 rounded-full" /></a>
+    </div>
+    <div class="hidden md:flex space-x-6 items-center">
+      <a href="/user/profile/<%= user._id %>/<%= user.fullname %>" class="text-gray-600 hover:text-blue-600 transition font-medium">Profile</a>
+      <a href="/about/<%= user._id %>/<%= user.fullname %>" class="text-gray-600 hover:text-blue-600 transition font-medium">About</a>
+      <a href="/contact" class="text-gray-600 hover:text-blue-600 transition font-medium">Contact</a>
+      <a href="/logout" class="text-gray-600 hover:text-blue-600 transition font-medium">Logout</a>
+    </div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-gray-600 text-2xl">☰</button>
+      <div id="dropdown" class="hidden absolute right-6 mt-2 w-40 bg-white border rounded-md shadow-md z-50">
+        <a href="/user/profile/<%= user._id %>/<%= user.fullname %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-user"></i>  Profile</a>
+        <a href="/about/<%= user._id %>/<%= user.fullname %>" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-card"></i> About</a>
+        <a href="/contact" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-address-book"></i> Contact</a>
+        <a href="/logout" class="block px-4 py-2 hover:bg-blue-100 text-gray-600"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Services Section -->
+  <section class="py-16 px-6 bg-white">
+    <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-12 tracking-tight">Our Services</h2>
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      
+      <% const services = [
+        { title: 'Web Development', description: 'Custom websites with responsive design, SEO optimization, and modern UI/UX for businesses of all sizes.' },
+        { title: 'App Development', description: 'High-performance Android and iOS applications tailored to your business needs and user expectations.' },
+        { title: 'Digital Marketing', description: 'Boost your brand with SEO, PPC, content marketing, and social strategies that drive results.' },
+        { title: 'UI/UX Design', description: 'Design intuitive, user-friendly interfaces that enhance experience and increase engagement.' },
+        { title: 'E-commerce Solutions', description: 'Sell online with powerful platforms, inventory tools, and secure payment integrations.' },
+        { title: 'Maintenance & Support', description: 'Ongoing support, monitoring, and updates to ensure your platforms run smoothly.' },
+      ]; %>
+
+      <% services.forEach(service => { %>
+        <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 animate-fadeInUp">
+          <h3 class="text-2xl font-bold text-blue-600 mb-3"><%= service.title %></h3>
+          <p class="text-gray-600 text-base leading-relaxed"><%= service.description %></p>
+        </div>
+      <% }); %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-6 text-center text-gray-500 text-sm border-t">
+    © <%= new Date().getFullYear() %> Info. All rights reserved. |
+    <a href="#privacy" class="hover:text-blue-500">Privacy Policy</a>
+  </footer>
+
+  <!-- Unified Script -->
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      document.getElementById("dropdown").classList.toggle("hidden");
+    });
+
+    // Optional: Animate on scroll using IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fadeInUp");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.animate-fadeInUp').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
